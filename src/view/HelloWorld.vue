@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <mt-cell title="标题文字" icon="more" value="带 icon"></mt-cell>
-    <p>{{dataFromVuex.all[0].count + '1'}}</p>
+    <p>{{allData.all[0].count}}</p>
   </div>
 </template>
 <script>
@@ -23,12 +23,13 @@ export default {
     },
     ...mapActions({
       getDataFromVuex: 'test/getTestData',
-      add: 'test/add'
+      add: 'test/add',
+      getMovie: 'test/getMovie'
     })
   },
   computed: {
     ...mapState({
-      dataFromVuex: 'test'
+      allData: 'test'
     })
   },
   created () {
@@ -36,10 +37,18 @@ export default {
   },
   mounted () {
     let _this = this
-    _this.add({id: 1})
-    // setInterval(function(){
-    //   _this.add({id: 1})
-    // },1000)
+    // _this.add({id: 1})
+    // commonApi.getDoubanData().then((result) => {
+    //   console.log('===', result)
+    // })
+    setInterval(function(){
+      _this.add({id: 1})
+    },1000)
+    // 通过getMovie也可以直接获取到数据，getMovie -> vuex action getMovie -> mutation getMovie -> 更新state
+    // this.getMovie()
+    commonApi.getMovie().then((result) => {
+      console.log(result)
+    })
   }
 }
 </script>

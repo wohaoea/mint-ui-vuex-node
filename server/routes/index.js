@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var wsclient = require('../common/wsclient')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,5 +17,13 @@ router.get('/api', function(req, res, next) {
     msg: "it's ok"
   })
 });
+
+router.get('/api/getMovie', function(req, res, next) {
+  wsclient.hotMovie({
+    count: 8
+  }, function(result) {
+    res.send(result)
+  })
+})
 
 module.exports = router;

@@ -6,9 +6,9 @@ import qs from 'qs'
 let baseURL
 // 判断当前环境
 if (process.env.NODE_ENV === 'production') {
-    baseURL = '/api'
+    // baseURL = '/api'
 } else if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://localhost:7001/api'
+    // baseURL = 'http://localhost:7001/api'
 }
 
 axios.interceptors.request.use(config => {
